@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: sans-serif;
+    justify-content: center;
+    background: lightblue;
+}
+
+.container{
+    position: relative;
+    width: 350px;
+    background: whitesmoke;
+    padding: 30px 20px;
+}
+
+header{
+    font-size: 40px;
+    margin-bottom: 60px;
+    font-family: sans-serif;
+}
+
+.input-register, form .btn{
+    margin: 25px 0;
+    position: relative;
+    height: 50px;
+    width: 100%;
+}
+
+.input-register input{
+    height: 100%;
+    width: 100%;
+    border: 1px solid silver;
+    padding-left: 15px;
+    font-size: 19px;
+    outline: none;
+
+}
+
+.input-register label{
+    left: 15px;
+    color: grey;
+    font-size: 18px;
+}
+
+.btn{
+    height: 100%;
+    width: 100%;
+    border: 1px solid silver;
+    padding-left: 15px;
+    font-size: 15px;
+    background-color: lightblue;
+}
