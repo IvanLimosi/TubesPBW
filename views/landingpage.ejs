@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Kuskus</title>
+</head>
+<body>
+    <main>
+        <header>
+            <div class="container">
+                <h2>KusKus</h2>
+            </div>
+        </header>
+        <div class="content">
+            <div class="container">
+                <div class="left">
+                    <h1>Welcome to KusKus!</h1>
+                    <p>Let's Start Exploring!</p>
+                    <div class="btn">
+                        <a href="/login" class="button">Get Started</a>
+                    </div>
+                </div>
+            
+                <div class="right">
+                    <img src="/image/forum.png" alt="forum" class="image">
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+    *{
+        padding: 0;
+        margin: 10px;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: "Poppins",sans-serif;
+    }
+
+    .content .container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn{
+        display: inline-block;
+        padding: 10px;
+        color: white;
+        background-color: rgb(128, 189, 245);
+        border-radius: 16px;
+    }
+</style>
+</html>
