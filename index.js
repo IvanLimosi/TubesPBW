@@ -47,7 +47,7 @@ app.post('/register', (req,res)=>{
 });
 
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('landingpage');
 });
 
 app.get('/login', (req, res) => {
