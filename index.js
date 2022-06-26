@@ -1,6 +1,8 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import mysql from 'mysql';
+
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -15,6 +17,29 @@ app.use(express.static(__dirname + '/public'));
 
 app.listen(port, () => {
     console.log(`Server running at: http://localhost:${port}/`);
+});
+
+const conn = mysql.createConnection({
+    host    :'localhost',
+    user    :'root',
+    password:'',
+    database:'tubes'
+});
+
+app.post('/register', (req,res)=>{
+    conn.connect(function(err){
+        if(err) {
+            console.log(err);
+            res.render('register')
+        }
+        const username = req.body.username;
+        const email = req.body.email;
+        const password = req.body.password;
+        var query = `INSERT INTO accounts (username, password, email) VALUES('${username}', '${password}', '${email}')`;
+        conn.query(query, function(err,result){
+            result.redirect("/login");
+        });
+    });
 });
 
 app.get('/', (req, res) => {
