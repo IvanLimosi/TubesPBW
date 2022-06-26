@@ -26,6 +26,10 @@ const conn = mysql.createConnection({
     database:'tubes'
 });
 
+app.get('/register', (req, res) => {
+    res.render('signup');
+});
+
 app.post('/register', (req,res)=>{
     conn.connect(function(err){
         if(err) {
@@ -50,9 +54,6 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
-app.get('/register', (req, res) => {
-    res.render('signup');
-});
 
 // app.get('/add', (req,res) => {
 //     res.render('add');
