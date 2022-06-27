@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import mysql from 'mysql';
+import bodyParser from 'body-parser';
+import session from 'express-session';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -14,6 +16,9 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: false })) 
+
+app.use(bodyParser.json()) 
 
 app.listen(port, () => {
     console.log(`Server running at: http://localhost:${port}/`);
@@ -62,6 +67,25 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
+app.post('/auth',(req,res)=>{
+    const email = req.body.email;
+    const password = req.body.password;
+    var query = `SELECT * FROM accounts WHERE email = '${email}' AND password = '${password}'`;
+    if(email && password){
+        conn.query(query,function(err,result){
+            if(err){
+                throw err;
+            }
+            if(result.length>0){
+                // req.session.loggedin = true;
+                // req.session.email = email;
+                res.redirect('/home');
+            }else{
+                res.send('Incorrect Username or Password!');
+            }
+        });
+    }
+});
 
 // app.get('/add', (req,res) => {
 //     res.render('add');
