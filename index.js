@@ -86,7 +86,7 @@ app.get('/home',(req, res)=>{
 });
 
 app.get('/insertThread',(req, res)=>{
-    res.render('insertThread')
+    res.render('insertThread',{nama : app.locals.username});
 });
 
 app.get('/', (req, res) => {
