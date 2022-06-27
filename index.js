@@ -41,9 +41,17 @@ app.post('/register', (req,res)=>{
         const password = req.body.password;
         var query = `INSERT INTO accounts (username, password, email) VALUES('${username}', '${password}', '${email}')`;
         conn.query(query, function(err,result){
-            result.redirect("/login");
+            if(err) {
+                throw err;
+            }else{
+                res.redirect('/login');
+            }
         });
     });
+});
+
+app.get('/home',(req, res)=>{
+    res.render('home');
 });
 
 app.get('/', (req, res) => {
