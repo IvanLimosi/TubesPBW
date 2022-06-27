@@ -16,7 +16,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/image'));
+
 app.use(bodyParser.urlencoded({extended:false}))
 
 app.use(session({
@@ -46,7 +46,7 @@ app.post('/register', (req,res)=>{
     conn.connect(function(err){
         if(err) {
             console.log(err);
-            res.render('register')
+            res.render('signup')
         }
         const username = req.body.username;
         const email = req.body.email;
@@ -63,7 +63,11 @@ app.post('/register', (req,res)=>{
 });
 
 app.get('/home',(req, res)=>{
-    res.render('home');
+    res.render('home',{nama : req.body.username});
+});
+
+app.get('/insertThread',(req, res)=>{
+    res.render('insertThread')
 });
 
 app.get('/', (req, res) => {
@@ -77,6 +81,7 @@ app.get('/login', (req, res) => {
 app.post('/auth',(req,res)=>{
     const email = req.body.email;
     const password = req.body.password;
+    const username = req.body.username;
     var query = `SELECT * FROM accounts WHERE email = '${email}' AND password = '${password}'`;
     if(email && password){
         conn.query(query,function(err,result){
@@ -86,6 +91,7 @@ app.post('/auth',(req,res)=>{
             if(result.length>0){
                 req.session.loggedin = true;
                 req.session.email = email;
+                app.locals.username = username;
                 res.redirect('/home');
             }else{
                 res.send('Incorrect Username or Password!');
@@ -99,6 +105,8 @@ app.get("/logout",(req,res)=>{
     req.session = null;
     res.redirect("/");
 });
+
+
 
 // app.get('/add', (req,res) => {
 //     res.render('add');
