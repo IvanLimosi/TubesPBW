@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+.btn{
+    display: inline-block;
+    padding: 10px;
+    color: white;
+    background-color: rgb(128, 189, 245);
+    border-radius: 16px;
+}
