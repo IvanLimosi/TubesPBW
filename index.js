@@ -16,7 +16,14 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({ extended: false })) 
+app.use(express.static(__dirname + '/image'));
+app.use(bodyParser.urlencoded({extended:false}))
+
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
 
 app.use(bodyParser.json()) 
 
@@ -77,14 +84,20 @@ app.post('/auth',(req,res)=>{
                 throw err;
             }
             if(result.length>0){
-                // req.session.loggedin = true;
-                // req.session.email = email;
+                req.session.loggedin = true;
+                req.session.email = email;
                 res.redirect('/home');
             }else{
                 res.send('Incorrect Username or Password!');
             }
         });
     }
+});
+
+app.get("/logout",(req,res)=>{
+    req.logout;
+    req.session = null;
+    res.redirect("/");
 });
 
 // app.get('/add', (req,res) => {
