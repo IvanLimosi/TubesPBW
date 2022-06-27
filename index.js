@@ -38,6 +38,25 @@ const conn = mysql.createConnection({
     database:'tubes'
 });
 
+// const pool = mysql.createPool({
+//     host    :'localhost',
+//     user    :'root',
+//     password:'',
+//     database:'tubes'
+// });
+
+// const dbConnect = () =>{
+//     return new Promise((resolve, reject) =>{
+//         pool.getConnection((err, conn)=>{
+//             if(err){
+//                 reject(err);
+//             }else{
+//                 resolve(conn);
+//             }
+//         })
+//     })
+// };
+
 app.get('/register', (req, res) => {
     res.render('signup');
 });
@@ -63,7 +82,7 @@ app.post('/register', (req,res)=>{
 });
 
 app.get('/home',(req, res)=>{
-    res.render('home',{nama : req.body.username});
+    res.render('home',{nama : app.locals.username});
 });
 
 app.get('/insertThread',(req, res)=>{
@@ -91,7 +110,7 @@ app.post('/auth',(req,res)=>{
             if(result.length>0){
                 req.session.loggedin = true;
                 req.session.email = email;
-                app.locals.username = username;
+                app.locals.username = result[0].username;
                 res.redirect('/home');
             }else{
                 res.send('Incorrect Username or Password!');
