@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import mysql from 'mysql';
+import bodyParser from 'body-parser';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -14,6 +15,9 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: false })) 
+
+app.use(bodyParser.json()) 
 
 app.listen(port, () => {
     console.log(`Server running at: http://localhost:${port}/`);
