@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/insert.css" type="text/css">
+    <title>Start a new Thread</title>
+</head>
+<body>
+    <header>
+        <%- include('header.ejs') %>
+    </header>
+
+    <div class="content">
+        <div class="wrapper">
+            <form action="" method="post">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text">
+                </div>
+
+                <div class="form-group">
+                    <label>Start Writing</label>
+                    <textarea rows="5" placeholder="....">
+                    </textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Categories</label>
+                    <select id="ctg">
+                        <option value="Games">Games</option>
+                        <option value="Hobby">Hobby</option>
+                        <option value="Drama">Music</option>
+                        <option value="Music">Horror</option>
+                      </select>
+                </div>
+                <button type="submit" class="submit">Post!</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
